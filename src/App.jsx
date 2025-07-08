@@ -8,10 +8,17 @@ export default function App() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  await fetch("https://sheetdb.io/api/v1/wkis3ryz4ykxc", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ data: form }),
+  });
+  setSubmitted(true);
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-8">
